@@ -2,11 +2,16 @@ let playGrid = [["-","-","-"],["-","-","-"],["-","-","-"]];
 const srcX = "assets/x_icon.svg";
 const srcO = "assets/o_icon.svg"; 
 let gridItemsList = document.getElementsByClassName("item-game-sign");
-let playerName1 = document.getElementById("player-1");
-let playerName2 = document.getElementById("player-2");
+let playerName1 = document.getElementById("player-1-name");
+let playerName2 = document.getElementById("player-2-name");
 let playerScore1 = document.getElementById("player-1-score");
 let playerScore2 = document.getElementById("player-2-score");
 let restartButton = document.getElementById("restart");
+
+let popUpContainer = document.getElementsByClassName("pop-up-container")[0];
+let popUpOverlay = document.getElementsByClassName("pop-up-overlay")[0];
+let popUpTitle = document.getElementById("pop-up-title");
+let popUpRestart = document.getElementById("restart2");
 
 let player1 = { name:"Player 1", sign:srcO, score:0, turn:true, simbol:"o", win:false};
 let player2 = { name:"Player 2", sign:srcX, score:0, turn:false, simbol:"x", win:false};
@@ -151,11 +156,13 @@ function conditionReviewer(){
         player1.score++;
         player1.win = true;
         setScore();
+        showPopUp();
         console.log("player 1 won");
    } if (col1Lose || col2Lose || col3Lose || row1Lose || row2Lose || row3Lose || diag1Lose || diag2Lose) {
         player2.score++;
         player2.win = true;
         setScore();
+        showPopUp();
         console.log("player 2 won");
    } else {
        console.log("Keep playing");
@@ -168,6 +175,23 @@ function setScore(){
     } if (player2.win === true){{
         playerScore2.textContent = player2.score;
     }}
+}
+
+function showPopUp() {
+    popUpContainer.style.display = "block";
+    if (player1.win === true) {
+        let winnerName = player1.name;
+        popUpTitle.textContent = winnerName + " wins!";
+    } else {
+        let winnerName = player2.name;
+        popUpTitle.textContent = winnerName + " wins!";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == popUpContainer) {
+            popUpContainer.style.display = "none";
+        }
+    }
 }
 
 for (let i = 0; i < gridItemsList.length; i++) {
@@ -196,4 +220,34 @@ restartButton.addEventListener("click",function(){
     player1.win = false;
     player2.win = false;
     console.log(playGrid.flat())
+})
+
+popUpRestart.addEventListener("click",function(){
+
+    popUpContainer.style.display = "none";
+
+    for (let i = 0; i < playGrid.length; i++) {
+        for (let e = 0; e < playGrid[i].length; e++) {
+            playGrid[i][e] = "-";
+        }
+    }
+    for (let e = 0; e < gridItemsList.length; e++) {
+        const element = gridItemsList[e];
+        element.src = "assets/empty_icon.svg";
+    }
+    player1.win = false;
+    player2.win = false;
+    console.log(playGrid.flat())
+})
+
+playerName1.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        player1.name = playerName1.value;
+    } 
+})
+
+playerName2.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        player2.name = playerName2.value;
+    } 
 })
