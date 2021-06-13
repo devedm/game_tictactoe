@@ -241,13 +241,9 @@ popUpRestart.addEventListener("click",function(){
 })
 
 playerName1.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-        player1.name = playerName1.value;
-    } 
+    player1.name = playerName1.value; 
 })
 
 playerName2.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-        player2.name = playerName2.value;
-    } 
+    player2.name = playerName2.value;
 })
