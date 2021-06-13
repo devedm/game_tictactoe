@@ -1,21 +1,25 @@
 body {
     font-family: Interstate,Calibri,Helvetica,sans-serif;
     font-size: 15px;
-    line-height: 0.5;
+    margin: auto;
 }
 
 h1 {
     color: #fed049;
     text-align: center;
-    font-size: 10vw;
+    font-size: 10rem;
+    margin: 0;
 }
+
 .score-bar{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 9vh;
     margin: auto;
+    height: fit-content;
+    width: fit-content;
+    font-size: 8rem;
 }
 
 .bar-item {
@@ -26,7 +30,7 @@ h1 {
 }
 
 .sign-icon {
-    width: 5vh;
+    height: 10vw;
     margin: 0;
 }
 
@@ -35,21 +39,25 @@ h1 {
     color:#007580;
     border: none;
     text-align: center;
-    font-size: 2rem;
+    font-size: 4rem;
+}
+
+.name-input:hover {
+    box-shadow: 5px 5px 15px grey;
+    border-radius: 50px;
 }
 
 .score-label {
     color: #007580;
     text-align: center;
-    font-size: 2rem;
-    margin: 2vh 15vh 2vh 19vh;
+    margin: auto;
 }
 
 .container-game {
     display: grid;
     width: 80vh;
-    grid-template-columns: minmax(80px,29%) minmax(20px,5%) minmax(80px,29%) minmax(20px,5%) minmax(80px,29%);
-    grid-template-rows: minmax(80px,29%) minmax(20px,5%) minmax(80px,29%) minmax(20px,5%) minmax(80px,29%);
+    grid-template-columns: minmax(40px,29%) minmax(10px,5%) minmax(40px,29%) minmax(10px,5%) minmax(40px,29%);
+    grid-template-rows: minmax(40px,29%) minmax(10px,5%) minmax(40px,29%) minmax(10px,5%) minmax(40px,29%);
     gap: 5px 5px ;
     margin: auto;
 }
@@ -57,18 +65,20 @@ h1 {
 .item-game-sign {
     place-self: center;
     align-self: center;
+    transition: all .2s ease-in-out
 }
 
 .item-game-sign:hover {
-    background-color: aliceblue;
+    background-color: rgb(206, 227, 245);
     border-radius: 10%;
 }
 
 .restart-button {
-    height: 3vh;
+    width: 5rem;
+    height: auto;
     fill: #fed049;
-    transition: all .2s ease-in-out
-
+    transition: all .2s ease-in-out;
+    margin: auto;
 }
 
 .restart-button:hover {
@@ -108,3 +118,50 @@ h1 {
     align-self: center;
 }
 
+/* Pop Up style */
+
+.pop-up-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 40vh; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.pop-up-background {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 2vh;
+    opacity: 0.9;
+    width: 30%;
+    height: 30%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#pop-up-title {
+    text-align: center;
+    z-index: 1;
+    opacity: 1;
+    font-size: 2rem;
+}
+
+@media only screen and (max-device-width: 750px) and (orientation: landscape){
+    .score-bar {margin: auto; width: 90vw;}
+    h1{font-size: 8rem;}
+    .container-game{width: 80vw;}
+    .score-label {font-size: 3rem;}
+}
+
+@media only screen and (max-device-width: 450px) and (orientation: portrait) {
+    .score-bar {margin: 0 20vw 0 20vw;}
+    h1{font-size: 8rem;}
+    .pop-up-background {height: 25vw;}
+}
