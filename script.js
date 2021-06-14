@@ -139,7 +139,7 @@ function conditionReviewer(){
     let row3Win = playGrid[2][0] === "o" && playGrid[2][1] === "o" && playGrid[2][2] === "o";
 
     let diag1Win = playGrid[0][0] === "o" && playGrid[1][1] === "o" && playGrid[2][2] === "o";
-    let diag2Win = playGrid[0][2] === "o" && playGrid[1][1] === "o" && playGrid[0][2] === "o";
+    let diag2Win = playGrid[2][0] === "o" && playGrid[1][1] === "o" && playGrid[0][2] === "o";
 
     let col1Lose = playGrid[0][0] === "x" && playGrid[1][0] === "x" && playGrid[2][0] === "x";
     let col2Lose = playGrid[0][1] === "x" && playGrid[1][1] === "x" && playGrid[2][1] === "x";
@@ -150,7 +150,7 @@ function conditionReviewer(){
     let row3Lose = playGrid[2][0] === "x" && playGrid[2][1] === "x" && playGrid[2][2] === "x";
 
     let diag1Lose = playGrid[0][0] === "x" && playGrid[1][1] === "x" && playGrid[2][2] === "x";
-    let diag2Lose = playGrid[0][2] === "x" && playGrid[1][1] === "x" && playGrid[0][2] === "x";
+    let diag2Lose = playGrid[2][0] === "x" && playGrid[1][1] === "x" && playGrid[0][2] === "x";
 
     if (col1Win || col2Win || col3Win || row1Win || row2Win || row3Win || diag1Win || diag2Win){
         player1.score++;
